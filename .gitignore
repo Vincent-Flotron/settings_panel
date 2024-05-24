@@ -159,3 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 main.py
+
+SON_Haut-parleurs.sh
+SON_Haut-parleurs2.sh
+SON_cable-hdmi.sh
+exampleCards.txt
+examplePort.txt
+old_config.ini

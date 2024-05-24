@@ -1,24 +1,25 @@
+#! /bin/python3
+
 # view.py
 # -------
 
 import tkinter as tk
 from tkinter import ttk
-from sound_output import SoundOutput
 
 class View:
-    def __init__(self, brightness):
+    def __init__(self, brightness, sound_output):
         self.root = tk.Tk()
         self.root.title("Settings Control")
 
-        self.brightness = brightness
-        self.sound_output = SoundOutput()
+        self.brightness   = brightness
+        self.sound_output = sound_output
 
         # Brightness Control
         actual_value = self.brightness.get_current_value()
-        label = ttk.Label(self.root, text="Set Brightness:")
+        label = tk.ttk.Label(self.root, text="Set Brightness:")
         label.pack(pady=10)
 
-        self.brightness_scale = ttk.Scale(
+        self.brightness_scale = tk.ttk.Scale(
             self.root,
             from_=self.brightness.get_limit_min_value(),
             to=self.brightness.get_limit_max_value(),
@@ -28,20 +29,20 @@ class View:
         )
         self.brightness_scale.pack(pady=20)
 
-        self.brightness_label = ttk.Label(self.root, text="")
+        self.brightness_label = tk.ttk.Label(self.root, text="")
         self.brightness_label.pack(pady=10)
 
         self.brightness_scale.bind("<ButtonRelease-1>", self.on_brightness_scale_release)
         self.update_brightness_label(actual_value)
 
         # Sound Output Control
-        sound_output_label = ttk.Label(self.root, text="Select Sound Output:")
-        sound_output_label.pack(pady=10)
+        self.sound_output_label = tk.ttk.Label(self.root, text="Select Sound Output:")
+        self.sound_output_label.pack(pady=10)
 
         self.sound_output_var = tk.StringVar(value=self.sound_output.get_current_value())
 
-        for option in self.sound_output.output_options:
-            rb = ttk.Radiobutton(self.root, text=option, variable=self.sound_output_var, value=option, command=self.on_sound_output_change)
+        for option in self.sound_output.choices:
+            rb = tk.ttk.Radiobutton(self.root, text=option, variable=self.sound_output_var, value=option, command=self.on_sound_output_change)
             rb.pack(anchor=tk.W)
 
     def on_brightness_scale_release(self, event):
@@ -71,6 +72,13 @@ class View:
             self.brightness_label.config(text=f"Actual Brightness: {self.brightness.pretty_print()}")
         else:
             self.brightness_label.config(text="Unable to retrieve brightness")
+            
+    def update_output_sound(self, val):
+        if val is not None:
+            self.sound_output_label.config(text=f"Actual Output: {val}")
+        else:
+            self.sound_output_label.config(text="Unable to retrieve brightness")
+
 
     def on_sound_output_change(self):
         try:
@@ -78,6 +86,7 @@ class View:
             self.sound_output.set_value(selected_output)
         except Exception as e:
             print(f"Error changing sound output: {e}")
+        self.update_output_sound(self.sound_output.get_current_value())
 
     def run(self):
         self.root.mainloop()

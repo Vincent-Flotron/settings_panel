@@ -1,3 +1,5 @@
+#! /bin/python3
+
 import re
 
 def extract_files(main_file_path):
