@@ -3,10 +3,11 @@
 # contrast.py
 # -------------
 
-from setting import Setting
-from scale import Scale
 import subprocess
 import re
+from   setting    import Setting
+from   scale      import Scale
+
 
 class Contrast(Setting, Scale):
     def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_contrast=30.0, limit_max_contrast=100.0, scaled_min_value=0.2, scaled_max_value=1.5):
@@ -24,9 +25,9 @@ class Contrast(Setting, Scale):
             # Execute the command and capture the output
             output = subprocess.check_output(
                 command,
-                shell=True,
-                text=True,
-                timeout=5
+                shell   = True,
+                text    = True,
+                timeout = 5
             )
             # Extract the contrast value using regex
             contrast_match = re.search(r"Gamma: *?(\d+\.?\d*)", output)
@@ -54,9 +55,9 @@ class Contrast(Setting, Scale):
             # Execute the command
             subprocess.run(
                 command,
-                shell=True,
-                timeout=5,
-                check=True
+                shell   = True,
+                timeout = 5,
+                check   = True
             )
         except subprocess.CalledProcessError as e:
             print(f"Failed to run xrandr command: {e}")
