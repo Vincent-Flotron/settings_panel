@@ -6,6 +6,85 @@
 import tkinter as tk
 from tkinter import ttk
 
+class Widget:
+  def __init__(self, root, label_text, control_obj):
+    self.root        = root
+    self.control_obj = control_obj
+    # Label for the widget
+    self.label = ttk.Label(self.root, text=label_text)
+    self.label.pack(pady=10)
+    
+    # Scale for the widget
+    actual_value = control_obj.get_current_value()
+    self.scale = ttk.Scale(
+      self.root,
+      from_   = control_obj.get_limit_min_value(),
+      to      = control_obj.get_limit_max_value(),
+      orient  = "horizontal",
+      value   = actual_value if actual_value is not None else control_obj.get_norm_val(),
+      command = self.on_scale_change
+    )
+    self.scale.pack(pady=20)
+    
+    # Display label for current value
+    self.value_label = ttk.Label(self.root, text="")
+    self.value_label.pack(pady=10)
+    
+    # Bind the scale event
+    self.scale.bind("<ButtonRelease-1>", self.on_scale_release)
+    self.update_value_label(actual_value)
+      
+  def update_value_label(self, value):
+    self.value_label.config(text=f"Current Value: {value}")
+    
+  # def on_scale_release(self, event):
+    # self.on_scale_event()
+    # try:
+      # value = self.scale.get()
+      # if value != self.brightness.get_val():
+        # set_value(value)
+        # actual_value = get_current_value()
+        # update_value_label(pretty_print())
+    # except Exception as e:
+      # print(f"Error adjusting brightness: {e}")
+      # update_value_label("Error adjusting brightness")
+      
+  
+  def on_scale_event(self):
+    try:
+      value = self.scale.get()
+      if value != self.control_obj.get_val():
+        self.control_obj.set_value(value)
+        actual_value = self.control_obj.get_current_value()
+        self.update_value_label(self.control_obj.pretty_print())
+    except Exception as e:
+      print(f"Error adjusting scale: {e}")
+      self.update_value_label("Error adjusting scale")
+      
+  def on_scale_release(self, event):
+    self.on_scale_event()
+    
+  def on_scale_change(self, event):
+    self.on_scale_event()
+
+  # def on_widget_scale_change(self, value):
+    # try:
+      # value = float(value)
+      # if value != self.brightness.get_val():
+        # self.brightness.set_value(value)
+        # actual_value = self.brightness.get_current_value()
+        # self.update_brightness_label(actual_value)
+    # except Exception as e:
+      # print(f"Error adjusting brightness: {e}")
+      # self.brightness_label.config(text="Error adjusting brightness")
+    
+def widget_builder(root, label_text, control_obj):
+  return Widget(
+    root        = root,
+    label_text  = label_text,
+    control_obj = control_obj
+  )
+
 class View:
     def __init__(self, brightness, sound_output, contrast):
         self.root = tk.Tk()
@@ -16,25 +95,30 @@ class View:
         self.contrast     = contrast
 
         # Brightness Control
-        actual_value = self.brightness.get_current_value()
-        label = tk.ttk.Label(self.root, text="Set Brightness:")
-        label.pack(pady=10)
+        brightness_widget = widget_builder( self.root, "Set Brightness:", self.brightness )
+        contrast_widget   = widget_builder( self.root, "Set Contrast:",   self.contrast   )
 
-        self.brightness_scale = tk.ttk.Scale(
-            self.root,
-            from_=self.brightness.get_limit_min_value(),
-            to=self.brightness.get_limit_max_value(),
-            orient="horizontal",
-            value=actual_value if actual_value is not None else self.brightness.get_norm_val(),
-            command=self.on_brightness_scale_change
-        )
-        self.brightness_scale.pack(pady=20)
+        
+        # Brightness Control
+        # actual_value = self.brightness.get_current_value()
+        # label = tk.ttk.Label(self.root, text="Set Brightness:")
+        # label.pack(pady=10)
 
-        self.brightness_label = tk.ttk.Label(self.root, text="")
-        self.brightness_label.pack(pady=10)
+        # self.brightness_scale = tk.ttk.Scale(
+            # self.root,
+            # from_=self.brightness.get_limit_min_value(),
+            # to=self.brightness.get_limit_max_value(),
+            # orient="horizontal",
+            # value=actual_value if actual_value is not None else self.brightness.get_norm_val(),
+            # command=self.on_brightness_scale_change
+        # )
+        # self.brightness_scale.pack(pady=20)
 
-        self.brightness_scale.bind("<ButtonRelease-1>", self.on_brightness_scale_release)
-        self.update_brightness_label(actual_value)
+        # self.brightness_label = tk.ttk.Label(self.root, text="")
+        # self.brightness_label.pack(pady=10)
+
+        # self.brightness_scale.bind("<ButtonRelease-1>", self.on_brightness_scale_release)
+        # self.update_brightness_label(actual_value)
 
         # Sound Output Control
         self.sound_output_label = tk.ttk.Label(self.root, text="Select Sound Output:")
@@ -46,33 +130,33 @@ class View:
             rb = tk.ttk.Radiobutton(self.root, text=option, variable=self.sound_output_var, value=option, command=self.on_sound_output_change)
             rb.pack(anchor=tk.W)
 
-    def on_brightness_scale_release(self, event):
-        try:
-            value = self.brightness_scale.get()
-            if value != self.brightness.get_val():
-                self.brightness.set_value(value)
-                actual_value = self.brightness.get_current_value()
-                self.update_brightness_label(actual_value)
-        except Exception as e:
-            print(f"Error adjusting brightness: {e}")
-            self.brightness_label.config(text="Error adjusting brightness")
+    # def on_brightness_scale_release(self, event):
+        # try:
+            # value = self.brightness_scale.get()
+            # if value != self.brightness.get_val():
+                # self.brightness.set_value(value)
+                # actual_value = self.brightness.get_current_value()
+                # self.update_brightness_label(actual_value)
+        # except Exception as e:
+            # print(f"Error adjusting brightness: {e}")
+            # self.brightness_label.config(text="Error adjusting brightness")
 
-    def on_brightness_scale_change(self, value):
-        try:
-            value = float(value)
-            if value != self.brightness.get_val():
-                self.brightness.set_value(value)
-                actual_value = self.brightness.get_current_value()
-                self.update_brightness_label(actual_value)
-        except Exception as e:
-            print(f"Error adjusting brightness: {e}")
-            self.brightness_label.config(text="Error adjusting brightness")
+    # def on_brightness_scale_change(self, value):
+        # try:
+            # value = float(value)
+            # if value != self.brightness.get_val():
+                # self.brightness.set_value(value)
+                # actual_value = self.brightness.get_current_value()
+                # self.update_brightness_label(actual_value)
+        # except Exception as e:
+            # print(f"Error adjusting brightness: {e}")
+            # self.brightness_label.config(text="Error adjusting brightness")
 
-    def update_brightness_label(self, val):
-        if val is not None:
-            self.brightness_label.config(text=f"Actual Brightness: {self.brightness.pretty_print()}")
-        else:
-            self.brightness_label.config(text="Unable to retrieve brightness")
+    # def update_brightness_label(self, val):
+        # if val is not None:
+            # self.brightness_label.config(text=f"Actual Brightness: {self.brightness.pretty_print()}")
+        # else:
+            # self.brightness_label.config(text="Unable to retrieve brightness")
             
     def update_output_sound(self, val):
         if val is not None:

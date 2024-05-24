@@ -51,6 +51,7 @@ class Brightness(Setting, Scale):
         try:
             # Construct the xrandr command to set the brightness
             command = f"xrandr --output {self.screen_name} --brightness {self.get_norm_val()}"
+            print(f"xrandr --output {self.screen_name} --brightness {self.get_norm_val()}")
             # Execute the command
             subprocess.run(
                 command,

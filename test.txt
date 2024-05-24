@@ -1,0 +1,3 @@
+test:
+
+xrandr --output LVDS-0 --brightness 0.8470588235294118
