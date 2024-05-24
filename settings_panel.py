@@ -7,6 +7,7 @@ import configparser
 from brightness   import Brightness
 from sound_output import SoundOutput
 from view         import View
+from contrast     import Contrast
 
 # Load configuration from file
 config = configparser.ConfigParser()
