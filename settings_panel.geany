@@ -28,23 +28,19 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=6
+current_page=2
 FILE_NAME_0=32;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fbrightness.py;0;2
-FILE_NAME_1=0;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmesure.py;0;2
-FILE_NAME_2=674;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
+FILE_NAME_1=41;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmesure.py;0;2
+FILE_NAME_2=582;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
 FILE_NAME_3=2843;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsound_output.py;0;2
 FILE_NAME_4=97;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fview.py;0;2
 FILE_NAME_5=1571;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FexampleCards.txt;0;2
-FILE_NAME_6=45;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsettings_panel.py;0;2
-FILE_NAME_7=85;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FexamplePort.txt;0;2
-FILE_NAME_8=718;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
-FILE_NAME_9=0;Sh;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FSON_cable-hdmi.sh;0;2
-FILE_NAME_10=90;Sh;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FSON_Haut-parleurs.sh;0;2
-FILE_NAME_11=0;Sh;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FSON_Haut-parleurs2.sh;0;2
-FILE_NAME_12=1262;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FxrandrVerb.txt;0;2
-FILE_NAME_13=1564;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
-FILE_NAME_14=58;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscreen_settings.py;0;2
-FILE_NAME_15=140;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Ftest.txt;0;2
+FILE_NAME_6=717;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
+FILE_NAME_7=1310;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
+FILE_NAME_8=244;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscreen_settings.py;0;2
+FILE_NAME_9=5;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Ftest.txt;0;2
+FILE_NAME_10=761;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
+FILE_NAME_11=220;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fpuissance.py;0;2
 
 [VTE]
 last_dir=/home/tuxfan

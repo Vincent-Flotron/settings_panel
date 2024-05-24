@@ -32,7 +32,12 @@ class Contrast(Setting, Scale):
             # Extract the contrast value using regex
             contrast_match = re.search(r"Gamma: *?(\d+\.?\d*)", output)
             if contrast_match:
+                print(f"1.0) get_val(): {self.get_val()}")
+                print(f"1.1) {contrast_match.group(0)}")
+                print(f"1.2) {float(contrast_match.group(1))}")
                 self.set_normalized_value(float(contrast_match.group(1)))
+                print(f"2.0) get_norm_val: {self.get_norm_val()}")
+                print(f"3.0) get_val(): {self.get_val()}")
                 return self.get_val()
             else:
                 print(f"Contrast value not found in xrandr output: {output}")
@@ -50,8 +55,10 @@ class Contrast(Setting, Scale):
     def set_value(self, value):
         self.set_val(value)
         try:
+            
             # Construct the xrandr command to set the contrast
             command = f"xrandr --output {self.screen_name} --gamma {self.get_norm_val()}:{self.get_norm_val()}:{self.get_norm_val()}"
+            print(f"SetContrast: {command}")
             # Execute the command
             subprocess.run(
                 command,

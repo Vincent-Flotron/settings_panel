@@ -6,10 +6,10 @@
 import threading
 
 class ScreenSettings:
-    _gamma = None
-    _brightness = None
+    _gamma       = None
+    _brightness  = None
     _screen_name = None
-    _lock = threading.Lock()
+    _lock        = threading.Lock()
 
     @staticmethod
     def set_gamma(value):
