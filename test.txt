@@ -1,3 +1,4 @@
 test:
 
 xrandr --output LVDS-0 --brightness 0.8470588235294118
+xrandr --output LVDS-0 --brightness 0.8470588235294118 --contrast 1.2:1.2:1.2

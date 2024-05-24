@@ -4,10 +4,11 @@
 # -----------
 
 import configparser
-from   brightness   import Brightness
-from   sound_output import SoundOutput
-from   view         import View
-from   contrast     import Contrast
+from   brightness      import Brightness
+from   sound_output    import SoundOutput
+from   view            import View
+from   contrast        import Contrast
+from   screen_settings import ScreenSettings
 
 # Load configuration from file
 config = configparser.ConfigParser()
@@ -26,7 +27,9 @@ brightness = Brightness(
     get_config_option("brightness", "min_brightness",         0.0, float),
     get_config_option("brightness", "max_brightness",       100.0, float),
     get_config_option("brightness", "limit_min_brightness",  30.0, float),
-    get_config_option("brightness", "limit_max_brightness", 100.0, float)
+    get_config_option("brightness", "limit_max_brightness", 100.0, float),
+    get_config_option("brightness", "min_scaled_brightness",  0.0, float),
+    get_config_option("brightness", "max_scaled_brightness",  1.0, float)
 )
 
 # Create an instance of the Contrast class
@@ -50,8 +53,8 @@ sound_output = SoundOutput(
     get_config_option("sound", "ports",          "analog-output-speaker,iec958-stereo-output")
 )
 
-
-
+# Prepare for brightness and contrast settings
+ScreenSettings.set_screen_name(get_config_option("contrast", "screen_name"))
 
 # Create the GUI view for brightness and sound output control
 view = View(brightness, sound_output, contrast)

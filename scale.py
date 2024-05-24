@@ -22,8 +22,6 @@ class Scale(ABC):
         self.limit_min_value = limit_min_value
         self.limit_max_value = limit_max_value
         k = ( min_value - max_value ) / ( scaled_min_value - scaled_max_value )
-        # offset = min_value - scaled_min_value * k
-        # scaled_min_value = min_value * k + offset
         # min_value = scaled_min_value * k + offset
         offset = min_value - scaled_min_value * k
         self._mesure = Mesure(max_value, offset, k, unit)

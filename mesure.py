@@ -20,7 +20,6 @@ class Mesure:
 
     def set_norm_val(self, val):
         """Sets the normalized value."""
-        print(f"Mesure.set_norm_val: {(val - self._offset) / self._k} = ({val} - {self._offset}) / {self._k}")
         self._val_norm = val
 
     def get_norm_val(self):
@@ -33,12 +32,10 @@ class Mesure:
         
         :param val: Actual value
         """
-        print(f"Mesure.set_val: {(val - self._offset) / self._k} = ({val} - {self._offset}) / {self._k}, norm: {self._val_norm}")
         self._val_norm = (val - self._offset) / self._k
 
     def get_val(self):
         """Gets the actual value from the normalized value."""
-        print(f"Mesure: get_val:: {self._val_norm * self._k + self._offset} = {self._val_norm} * {self._k} + {self._offset}")
         return self._val_norm * self._k + self._offset
 
     def get_unit(self):

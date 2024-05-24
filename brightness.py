@@ -5,13 +5,14 @@
 
 import subprocess
 import re
-from   setting    import Setting
-from   scale      import Scale
+from   setting         import Setting
+from   scale           import Scale
+from   screen_settings import ScreenSettings
 
 
 class Brightness(Setting, Scale):
-  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_brightness=30.0, limit_max_brightness=100.0):
-    super().__init__(min_value, max_value, limit_min_brightness, limit_max_brightness, "%")
+  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_brightness=30.0, limit_max_brightness=100.0, min_scaled_value=0, max_scaled_value=1):
+    super().__init__(min_value, max_value, limit_min_brightness, limit_max_brightness, "%", min_scaled_value, max_scaled_value)
     self.screen_name = screen_name
 
   def get_current_value(self):
@@ -49,10 +50,12 @@ class Brightness(Setting, Scale):
 
   def set_value(self, value):
     self.set_val(value)
+    ScreenSettings.set_brightness(self.get_norm_val())
     try:
       # Construct the xrandr command to set the brightness
-      command = f"xrandr --output {self.screen_name} --brightness {self.get_norm_val()}"
-      print(f"xrandr --output {self.screen_name} --brightness {self.get_norm_val()}")
+      # command = f"xrandr --output {self.screen_name} --brightness {self.get_norm_val()}"
+      command = ScreenSettings.get_command()
+      print(command)
       # Execute the command
       subprocess.run(
         command,
