@@ -7,12 +7,13 @@ import tkinter as tk
 from tkinter import ttk
 
 class View:
-    def __init__(self, brightness, sound_output):
+    def __init__(self, brightness, sound_output, contrast):
         self.root = tk.Tk()
         self.root.title("Settings Control")
 
         self.brightness   = brightness
         self.sound_output = sound_output
+        self.contrast     = contrast
 
         # Brightness Control
         actual_value = self.brightness.get_current_value()

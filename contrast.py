@@ -9,8 +9,8 @@ import subprocess
 import re
 
 class Contrast(Setting, Scale):
-    def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_contrast=30.0, limit_max_contrast=100.0):
-        super().__init__(min_value, max_value, limit_min_contrast, limit_max_contrast, "%")
+    def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_contrast=30.0, limit_max_contrast=100.0, scaled_min_value=0.2, scaled_max_value=1.5):
+        super().__init__(min_value, max_value, limit_min_contrast, limit_max_contrast, "%", scaled_min_value, scaled_max_value)
         self.screen_name = screen_name
 
     def get_current_value(self):
@@ -19,7 +19,7 @@ class Contrast(Setting, Scale):
             command = (
                 r"xrandr --verbose | grep -Poz '"
                 + re.escape(self.screen_name)
-                + r"(?:.*\r?\n){1,10}.*Contrast: *?(\d\.?\d*)'"
+                + r"(?:.*\r?\n){1,10}.*Gamma: *?(\d+\.?\d*)'"
             )
             # Execute the command and capture the output
             output = subprocess.check_output(
@@ -29,7 +29,7 @@ class Contrast(Setting, Scale):
                 timeout=5
             )
             # Extract the contrast value using regex
-            contrast_match = re.search(r"Contrast: *?(\d\.?\d*)", output)
+            contrast_match = re.search(r"Gamma: *?(\d+\.?\d*)", output)
             if contrast_match:
                 self.set_normalized_value(float(contrast_match.group(1)))
                 return self.get_val()
@@ -50,7 +50,7 @@ class Contrast(Setting, Scale):
         self.set_val(value)
         try:
             # Construct the xrandr command to set the contrast
-            command = f"xrandr --output {self.screen_name} --contrast {self.get_norm_val()}"
+            command = f"xrandr --output {self.screen_name} --gamma {self.get_norm_val()}:{self.get_norm_val()}:{self.get_norm_val()}"
             # Execute the command
             subprocess.run(
                 command,
