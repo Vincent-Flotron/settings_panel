@@ -4,7 +4,8 @@
 # -------
 
 import tkinter as tk
-from tkinter import ttk
+from   tkinter         import ttk
+from   screen_settings import ScreenSettings
 
 class Widget:
   def __init__(self, root, label_text, control_obj):
@@ -33,6 +34,7 @@ class Widget:
     # Bind the scale event
     self.scale.bind("<ButtonRelease-1>", self.on_scale_release)
     self.update_value_label(actual_value)
+
       
   def update_value_label(self, value):
     self.value_label.config(text=f"Current Value: {value}")
@@ -72,10 +74,12 @@ class View:
 
         # Brightness Control
         brightness_widget = widget_builder( self.root, "Set Brightness:", self.brightness )
+        ScreenSettings.set_brightness(self.brightness.get_norm_val())
         
         # Contrast Control
         contrast_widget   = widget_builder( self.root, "Set Contrast:",   self.contrast   )
-
+        ScreenSettings.set_gamma(self.contrast.get_norm_val())
+        
         # Sound Output Control
         self.sound_output_label = tk.ttk.Label(self.root, text="Select Sound Output:")
         self.sound_output_label.pack(pady=10)

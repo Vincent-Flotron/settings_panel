@@ -30,12 +30,14 @@ long_line_column=72
 [files]
 current_page=3
 FILE_NAME_0=377;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fbrightness.py;0;2
-FILE_NAME_1=97;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fview.py;0;2
+FILE_NAME_1=2455;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fview.py;0;2
 FILE_NAME_2=1571;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2FexampleCards.txt;0;2
-FILE_NAME_3=211;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
-FILE_NAME_4=1866;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
+FILE_NAME_3=402;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
+FILE_NAME_4=253;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
 FILE_NAME_5=58;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscreen_settings.py;0;2
 FILE_NAME_6=1067;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
+FILE_NAME_7=39;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
+FILE_NAME_8=100;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsetting.py;0;2
 
 [VTE]
 last_dir=/home/tuxfan
