@@ -1,7 +1,7 @@
 #! /bin/python3
 
-# reglages.py
-# -----------
+# main.py
+# -------
 
 import configparser
 from   brightness      import Brightness

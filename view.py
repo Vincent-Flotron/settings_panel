@@ -61,6 +61,44 @@ class WidgetScale(Widget):
     
   def on_scale_change(self, event):
     self.on_scale_event()
+
+class WidgetRadioButton(Widget):
+  def __init__(self, root, label_text, control_obj):
+    super().__init__(root, label_text, control_obj)
+    
+    # Scale for the widget
+    self.radio_label = tk.ttk.Label(self.root, text="Select Sound's Output:")
+    self.radio_label.pack(pady=10)
+
+    self.radio_var = tk.StringVar(value=self.control_obj.get_current_value())
+    for option in self.control_obj.choices:
+      rb = tk.ttk.Radiobutton(self.root, text=option, variable=self.radio_var, value=option, command=self.on_radio_change)
+      rb.pack(anchor=tk.W)
+    
+  def on_radio_change(self):
+    try:
+      selected_output = self.sound_output_var.get()
+      self.control_obj.set_value(selected_output)
+    except Exception as e:
+      print(f"Error changing radio button: {e}")
+    super().update_value_label(self.control_obj.get_current_value())
+
+  def on_scale_event(self):
+    try:
+      value = self.scale.get()
+      if value != self.control_obj.get_val():
+        self.control_obj.set_value(value)
+        actual_value = self.control_obj.get_current_value()
+        self.update_value_label(self.control_obj.pretty_print())
+    except Exception as e:
+      print(f"Error adjusting scale: {e}")
+      super().update_value_label("Error adjusting scale")
+      
+  def on_scale_release(self, event):
+    self.on_scale_event()
+    
+  def on_scale_change(self, event):
+    self.on_scale_event()
     
 class WidgetBuilder:
   # Widget's types
@@ -75,7 +113,7 @@ class WidgetBuilder:
         control_obj = control_obj
       )
     elif (widget_type == WidgetBuilder.type_radio):
-      return WidgetRadio(
+      return WidgetRadioButton(
         root        = root,
         label_text  = label_text,
         control_obj = control_obj
@@ -91,36 +129,46 @@ class View:
         self.contrast     = contrast
 
         # Brightness Control
-        brightness_widget = WidgetBuilder.make( self.root, "Set Brightness:", self.brightness, WidgetBuilder.type_scale )
+        brightness_widget   = WidgetBuilder.make( self.root,
+                                                  "Set Brightness:",
+                                                  self.brightness,
+                                                  WidgetBuilder.type_scale )
         ScreenSettings.set_brightness(self.brightness.get_norm_val())
         
         # Contrast Control
-        contrast_widget   = WidgetBuilder.make( self.root, "Set Contrast:",   self.contrast,   WidgetBuilder.type_scale )
+        contrast_widget     = WidgetBuilder.make( self.root,
+                                                  "Set Contrast:",
+                                                  self.contrast,
+                                                  WidgetBuilder.type_scale )
         ScreenSettings.set_gamma(self.contrast.get_norm_val())
         
         # Sound Output Control
-        self.sound_output_label = tk.ttk.Label(self.root, text="Select Sound Output:")
-        self.sound_output_label.pack(pady=10)
+        sound_output_widget = WidgetBuilder.make( self.root,
+                                                  "Set sound's output:",
+                                                  self.sound_output,
+                                                  WidgetBuilder.type_radio )
+        # self.sound_output_label = tk.ttk.Label(self.root, text="Select Sound's Output:")
+        # self.sound_output_label.pack(pady=10)
 
-        self.sound_output_var = tk.StringVar(value=self.sound_output.get_current_value())
+        # self.sound_output_var = tk.StringVar(value=self.sound_output.get_current_value())
 
-        for option in self.sound_output.choices:
-            rb = tk.ttk.Radiobutton(self.root, text=option, variable=self.sound_output_var, value=option, command=self.on_sound_output_change)
-            rb.pack(anchor=tk.W)
+        # for option in self.sound_output.choices:
+            # rb = tk.ttk.Radiobutton(self.root, text=option, variable=self.sound_output_var, value=option, command=self.on_sound_output_change)
+            # rb.pack(anchor=tk.W)
 
-    def update_output_sound(self, val):
-        if val is not None:
-            self.sound_output_label.config(text=f"Actual Output: {val}")
-        else:
-            self.sound_output_label.config(text="Unable to retrieve brightness")
+    # def update_output_sound(self, val):
+        # if val is not None:
+            # self.sound_output_label.config(text=f"Actual Output: {val}")
+        # else:
+            # self.sound_output_label.config(text="Unable to retrieve sound's output")
 
-    def on_sound_output_change(self):
-        try:
-            selected_output = self.sound_output_var.get()
-            self.sound_output.set_value(selected_output)
-        except Exception as e:
-            print(f"Error changing sound output: {e}")
-        self.update_output_sound(self.sound_output.get_current_value())
+    # def on_sound_output_change(self):
+        # try:
+            # selected_output = self.sound_output_var.get()
+            # self.sound_output.set_value(selected_output)
+        # except Exception as e:
+            # print(f"Error changing sound output: {e}")
+        # self.update_output_sound(self.sound_output.get_current_value())
 
     def run(self):
         self.root.mainloop()
