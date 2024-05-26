@@ -7,13 +7,27 @@ import tkinter as tk
 from   tkinter         import ttk
 from   screen_settings import ScreenSettings
 
+
 class Widget:
   def __init__(self, root, label_text, control_obj):
     self.root        = root
     self.control_obj = control_obj
-    # Label for the widget
+    
+    # Label for the Widget
     self.label = ttk.Label(self.root, text=label_text)
     self.label.pack(pady=10)
+    
+    # Display label for current value
+    self.value_label = ttk.Label(self.root, text="")
+    self.value_label.pack(pady=10)
+    
+  def update_value_label(self, value):
+    self.value_label.config(text=f"Current Value: {value}")
+    
+
+class WidgetScale(Widget):
+  def __init__(self, root, label_text, control_obj):
+    super().__init__(root, label_text, control_obj)
     
     # Scale for the widget
     actual_value = control_obj.get_current_value()
@@ -27,17 +41,9 @@ class Widget:
     )
     self.scale.pack(pady=20)
     
-    # Display label for current value
-    self.value_label = ttk.Label(self.root, text="")
-    self.value_label.pack(pady=10)
-    
     # Bind the scale event
     self.scale.bind("<ButtonRelease-1>", self.on_scale_release)
-    self.update_value_label(actual_value)
-
-      
-  def update_value_label(self, value):
-    self.value_label.config(text=f"Current Value: {value}")
+    super().update_value_label(actual_value)
 
   def on_scale_event(self):
     try:
@@ -48,7 +54,7 @@ class Widget:
         self.update_value_label(self.control_obj.pretty_print())
     except Exception as e:
       print(f"Error adjusting scale: {e}")
-      self.update_value_label("Error adjusting scale")
+      super().update_value_label("Error adjusting scale")
       
   def on_scale_release(self, event):
     self.on_scale_event()
@@ -56,13 +62,25 @@ class Widget:
   def on_scale_change(self, event):
     self.on_scale_event()
     
-def widget_builder(root, label_text, control_obj):
-  return Widget(
-    root        = root,
-    label_text  = label_text,
-    control_obj = control_obj
-  )
-
+class WidgetBuilder:
+  # Widget's types
+  type_scale = "scale"
+  type_radio = "radio"
+  
+  def make(root, label_text, control_obj, widget_type):
+    if (widget_type == WidgetBuilder.type_scale):
+      return WidgetScale(
+        root        = root,
+        label_text  = label_text,
+        control_obj = control_obj
+      )
+    elif (widget_type == WidgetBuilder.type_radio):
+      return WidgetRadio(
+        root        = root,
+        label_text  = label_text,
+        control_obj = control_obj
+      )
+      
 class View:
     def __init__(self, brightness, sound_output, contrast):
         self.root = tk.Tk()
@@ -73,11 +91,11 @@ class View:
         self.contrast     = contrast
 
         # Brightness Control
-        brightness_widget = widget_builder( self.root, "Set Brightness:", self.brightness )
+        brightness_widget = WidgetBuilder.make( self.root, "Set Brightness:", self.brightness, WidgetBuilder.type_scale )
         ScreenSettings.set_brightness(self.brightness.get_norm_val())
         
         # Contrast Control
-        contrast_widget   = widget_builder( self.root, "Set Contrast:",   self.contrast   )
+        contrast_widget   = WidgetBuilder.make( self.root, "Set Contrast:",   self.contrast,   WidgetBuilder.type_scale )
         ScreenSettings.set_gamma(self.contrast.get_norm_val())
         
         # Sound Output Control
