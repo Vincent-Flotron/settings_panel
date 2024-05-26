@@ -12,9 +12,10 @@ import gamma_formula as gf
 
 
 class Contrast(Setting, Scale):
-  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_contrast=30.0, limit_max_contrast=100.0, scaled_min_value=0.2, scaled_max_value=1.5):
-    super().__init__(min_value, max_value, limit_min_contrast, limit_max_contrast, "%", scaled_min_value, scaled_max_value)
+  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_contrast=30.0, limit_max_contrast=100.0, scaled_min_value=0.2, scaled_max_value=1.5, default_value=100):
+    super().__init__(min_value, max_value, limit_min_contrast, limit_max_contrast, "%", scaled_min_value, scaled_max_value, default_value)
     self.screen_name = screen_name
+    self.set_value(default_value)
 
   def get_current_value(self):
     try:

@@ -11,9 +11,12 @@ from   screen_settings import ScreenSettings
 
 
 class Brightness(Setting, Scale):
-  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_brightness=30.0, limit_max_brightness=100.0, min_scaled_value=0, max_scaled_value=1):
-    super().__init__(min_value, max_value, limit_min_brightness, limit_max_brightness, "%", min_scaled_value, max_scaled_value)
+  def __init__(self, screen_name, min_value=0.0, max_value=100.0, limit_min_brightness=30.0, limit_max_brightness=100.0, min_scaled_value=0, max_scaled_value=1, default_value=100):
+    super().__init__(min_value, max_value, limit_min_brightness, limit_max_brightness, "%", min_scaled_value, max_scaled_value, default_value)
     self.screen_name = screen_name
+    
+    # Set default value
+    self.set_value(default_value)
 
   def get_current_value(self):
     try:

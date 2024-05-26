@@ -29,7 +29,8 @@ brightness = Brightness(
     get_config_option("brightness", "limit_min_brightness",  30.0, float),
     get_config_option("brightness", "limit_max_brightness", 100.0, float),
     get_config_option("brightness", "min_scaled_brightness",  0.0, float),
-    get_config_option("brightness", "max_scaled_brightness",  1.0, float)
+    get_config_option("brightness", "max_scaled_brightness",  1.0, float),
+    get_config_option("brightness", "default_brightness",   100.0, float)
 )
 
 # Create an instance of the Contrast class
@@ -40,7 +41,8 @@ contrast = Contrast(
     get_config_option("contrast", "limit_min_contrast",  30.0, float),
     get_config_option("contrast", "limit_max_contrast", 100.0, float),
     get_config_option("contrast", "scaled_min_contrast",  0.2, float),
-    get_config_option("contrast", "scaled_max_contrast",  1.5, float)
+    get_config_option("contrast", "scaled_max_contrast",  1.5, float),
+    get_config_option("contrast", "default_contrast",   100.0, float)
 )
 
 # Create an instance of the Sound Output class
@@ -57,7 +59,13 @@ sound_output = SoundOutput(
 ScreenSettings.set_screen_name(get_config_option("contrast", "screen_name"))
 
 # Create the GUI view for brightness and sound output control
-view = View(brightness, sound_output, contrast)
+view = View(
+    brightness,
+    sound_output,
+    contrast,
+    get_config_option("theme", "themes",          "arc,clam,alt,default,classic"),
+    get_config_option("theme", "default_theme",   "clam")
+)
 
 # Start the main event loop
 view.run()
