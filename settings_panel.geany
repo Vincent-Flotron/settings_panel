@@ -28,22 +28,22 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=11
+current_page=9
 FILE_NAME_0=665;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fbrightness.py;0;2
 FILE_NAME_1=236;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fview.py;0;2
 FILE_NAME_2=129;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
-FILE_NAME_3=1470;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
+FILE_NAME_3=999;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
 FILE_NAME_4=549;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscreen_settings.py;0;2
-FILE_NAME_5=1408;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
-FILE_NAME_6=2172;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsound_output.py;0;2
-FILE_NAME_7=2410;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
+FILE_NAME_5=357;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
+FILE_NAME_6=632;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsound_output.py;0;2
+FILE_NAME_7=1173;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
 FILE_NAME_8=511;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsetting.py;0;2
-FILE_NAME_9=2041;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fwidget.py;0;2
+FILE_NAME_9=1418;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fwidget.py;0;2
 FILE_NAME_10=166;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fpuissance.py;0;2
-FILE_NAME_11=893;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate.py;0;2
+FILE_NAME_11=50;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate.py;0;2
 FILE_NAME_12=541;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate_lister.py;0;2
 FILE_NAME_13=41;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fgamma_formula.py;0;2
-FILE_NAME_14=0;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmesure.py;0;2
+FILE_NAME_14=52;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmesure.py;0;2
 FILE_NAME_15=788;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fupdate_from_main.py;0;2
 
 [VTE]

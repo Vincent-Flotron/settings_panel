@@ -22,11 +22,18 @@ class SoundOutput( Setting ):
     self.outputs        = outputs.split( ',' )
     self.ports          = ports.split( ',' )
     
-    # Initialize profile_regex before calling get_current_value
-    self.profile_regex = re.compile(
+    # Initialize profile_regex
+    self.profile_regex       = re.compile(
       r"Nom\s*:\s*" +
       re.escape( self.cards[0] ) +
       r".*\r?\n(?:\t.*\r?\n)*\tProfil actif\s*:\s*output:(.+?)[\+|$]"
+    )
+    
+    # Initialize actual_config_regex
+    self.actual_config_regex = re.compile(
+      r"Nom\s*:\s*" + 
+      re.escape( self.cards[0] ) + 
+      r".*\r?\n(?:\t.*\r?\n)*\tProfil actif\s*:\s*(.+)"
     )
     
     # Get the current output value
@@ -35,14 +42,13 @@ class SoundOutput( Setting ):
   def get_current_value( self ):
     try:
       # Get the actual profile used
-      pactl_list_cards    = subprocess.check_output( "pactl list cards", shell=True, text=True ).strip()
+      pactl_list_cards    = subprocess.check_output(
+        "pactl list cards",
+        shell = True,
+        text  = True
+      ).strip()
       actual_profil_match = self.profile_regex.search( pactl_list_cards )
-      config_regex        = re.compile(
-        r"Nom\s*:\s*" + 
-        re.escape( self.cards[0] ) + 
-        r".*\r?\n(?:\t.*\r?\n)*\tProfil actif\s*:\s*(.+)"
-      )
-      actual_config_match = config_regex.search( pactl_list_cards )
+      actual_config_match = self.actual_config_regex.search( pactl_list_cards )
 
       if actual_profil_match:
         actual_profil = actual_profil_match.group(1).strip()
@@ -57,7 +63,11 @@ class SoundOutput( Setting ):
         raise ValueError( "Failed to match actual config." )
 
       # Get the actual port used
-      pactl_list_sinks = subprocess.check_output( "pactl list sinks", shell=True, text=True ).strip()
+      pactl_list_sinks = subprocess.check_output(
+        "pactl list sinks",
+        shell = True,
+        text  = True
+      ).strip()
       port_regex = re.compile(
         r"Nom\s*:\s*" + re.escape( self.card_outputs[0] ) + 
         r"." + re.escape( actual_profil )                 + 
@@ -97,7 +107,10 @@ class SoundOutput( Setting ):
     if conf_ind == port_ind:
       return self.choices[ port_ind ]
     else:
-      print( f"Configuration and port indices do not match: {conf_ind} != {port_ind}" )
+      print( 
+        f"Configuration and port indices " +
+        f"do not match: {conf_ind} != {port_ind}"
+      )
       return None
 
   def find_choice_index( self, choice ):
@@ -112,8 +125,14 @@ class SoundOutput( Setting ):
     if value in self.choices:
       choice_index = self.find_choice_index( value )
       if choice_index is not None:
-        cmd_set_profile = f"pactl set-card-profile {self.cards[choice_index]} {self.configurations[choice_index]}"
-        cmd_set_port    = f"pactl set-sink-port {self.card_outputs[choice_index]}.{self.outputs[choice_index]} {self.ports[choice_index]}"
+        cmd_set_profile =                          \
+          f"pactl set-card-profile "             + \
+          f"{self.cards[choice_index]} "         + \
+          f"{self.configurations[choice_index]}"
+        cmd_set_port    =                                                      \
+          f"pactl set-sink-port "                                            + \
+          f"{self.card_outputs[choice_index]}.{self.outputs[choice_index]} " + \
+          f"{self.ports[choice_index]}"
         try:
           subprocess.run( cmd_set_profile, shell=True, check=True )
           subprocess.run( cmd_set_port,    shell=True, check=True )

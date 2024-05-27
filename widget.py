@@ -48,7 +48,7 @@ class WidgetScale( Widget ):
     
     # Bind the scale event
     self.scale.bind( "<ButtonRelease-1>", self.on_scale_release )
-    super().update_value_label( actual_value )
+    super().update_value_label( round(actual_value, 2) )
 
   def on_scale_event( self ):
     try:

@@ -31,10 +31,10 @@ class Contrast( Setting, Scale ):
       scaled_max_value,
       default_value
     )
-    self.screen_name   = screen_name
+    self.screen_name    = screen_name
     self.set_value( default_value )
     
-    self.contrast_extr = re.compile( r"Gamma: *?(\d+\.?\d*)" )
+    self.contrast_regex = re.compile( r"Gamma: *?(\d+\.?\d*)" )
 
   def get_current_value( self ):
     try:
@@ -52,7 +52,7 @@ class Contrast( Setting, Scale ):
         timeout = 5
       )
       # Extract the contrast value using regex
-      contrast_match = self.contrast_extr.search( output )
+      contrast_match = self.contrast_regex.search( output )
       if contrast_match:
         self.set_normalized_value( float( contrast_match.group(1) ) )
         return self.get_val()

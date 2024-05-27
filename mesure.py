@@ -36,7 +36,7 @@ class Mesure:
     
     :param val: Actual value
     """
-    self._val_norm = ( val - self._offset ) / self._k
+    self._val_norm  = ( val - self._offset ) / self._k
 
   def get_val( self ):
     """Gets the actual value from the normalized value."""
