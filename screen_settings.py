@@ -11,7 +11,7 @@ class ScreenSettings:
 
   @staticmethod
   def set_gamma( value ):
-    ScreenSettings._gamma = value
+    ScreenSettings._gamma       = value
 
   @staticmethod
   def get_gamma():
@@ -19,7 +19,7 @@ class ScreenSettings:
 
   @staticmethod
   def set_brightness( value ):
-    ScreenSettings._brightness = value
+    ScreenSettings._brightness  = value
 
   @staticmethod
   def get_brightness():
@@ -35,6 +35,9 @@ class ScreenSettings:
 
   @staticmethod
   def get_command():
-    return f"xrandr --output {ScreenSettings.get_screen_name()} --brightness {ScreenSettings.get_brightness()} --gamma {ScreenSettings.get_gamma()}:{ScreenSettings.get_gamma()}:{ScreenSettings.get_gamma()}"
+    return f"xrandr --output {ScreenSettings.get_screen_name()} " + \
+           f"--brightness {ScreenSettings.get_brightness()} "     + \
+           f"--gamma {ScreenSettings.get_gamma()}:"               + \
+           f"{ScreenSettings.get_gamma()}:"                       + \
+           f"{ScreenSettings.get_gamma()}"
           
-

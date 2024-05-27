@@ -19,11 +19,11 @@ class Scale( ABC ):
     """
     Initializes the Scale object.
 
-    :param min_value:       Minimum scale value
-    :param max_value:       Maximum scale value
-    :param limit_min_value: Minimum limit value
-    :param limit_max_value: Maximum limit value
-    :param unit:            Unit of measurement
+    :param min_value       : Minimum scale value
+    :param max_value       : Maximum scale value
+    :param limit_min_value : Minimum limit value
+    :param limit_max_value : Maximum limit value
+    :param unit            : Unit of measurement
     """
     self.min             = min_value
     self.max             = max_value
@@ -34,11 +34,11 @@ class Scale( ABC ):
     # min_value = scaled_min_value * k + offset
     offset               = min_value - scaled_min_value * k
     self._mesure         = Mesure( 
-       max_value,
-       offset,
-       k,
-       unit
-     )
+      max_value,
+      offset,
+      k,
+      unit
+    )
     
     # Set default value
     self.set_val( default_value )

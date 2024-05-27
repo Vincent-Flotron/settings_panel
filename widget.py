@@ -7,8 +7,7 @@ import tkinter as tk
 from   tkinter import ttk
 
 class Widget:
-  def __init__( 
-                self,
+  def __init__( self,
                 root,
                 label_text,
                 control_obj ):
@@ -28,8 +27,7 @@ class Widget:
     
 
 class WidgetScale( Widget ):
-  def __init__(
-                self,
+  def __init__( self,
                 root,
                 label_text,
                 control_obj ):
@@ -70,8 +68,7 @@ class WidgetScale( Widget ):
     self.on_scale_event()
 
 class WidgetRadioButton( Widget ):
-  def __init__( 
-                self,
+  def __init__( self,
                 root,
                 label_text,
                 control_obj ):

@@ -16,8 +16,8 @@ config.read( "config.ini" )
 
 def get_config_option( section,
                        option,
-                       default=None,
-                       type_func=str ):
+                       default   = None,
+                       type_func = str   ):
   try:
     return type_func( config.get( section, option ) )
   except ( configparser.NoSectionError, configparser.NoOptionError, ValueError ) as e:
@@ -50,12 +50,42 @@ contrast = Contrast(
 
 # Create an instance of the Sound Output class
 sound_output = SoundOutput(
-  get_config_option( "sound", "choices",        "Speakers,HDMI"                                                                     ),
-  get_config_option( "sound", "cards",          "alsa_card.pci-0000_00_1b.0,alsa_card.pci-0000_00_1b.0"                             ),
-  get_config_option( "sound", "card_outputs",   "alsa_output.pci-0000_00_1b.0,alsa_output.pci-0000_00_1b.0"                         ),
-  get_config_option( "sound", "configurations", "output:analog-stereo+input:analog-stereo,output:iec958-stereo+input:analog-stereo" ),
-  get_config_option( "sound", "outputs",        "analog-stereo,iec958-stereo"                                                       ),
-  get_config_option( "sound", "ports",          "analog-output-speaker,iec958-stereo-output"                                        )
+  get_config_option( 
+                     "sound",
+                     "choices",
+                     "Speakers," +
+                     "HDMI"
+                   ),
+  get_config_option( 
+                     "sound", 
+                     "cards",
+                     "alsa_card.pci-0000_00_1b.0," +
+                     "alsa_card.pci-0000_00_1b.0"
+                   ),
+  get_config_option( 
+                     "sound", 
+                     "card_outputs",
+                     "alsa_output.pci-0000_00_1b.0," +
+                     "alsa_output.pci-0000_00_1b.0"
+                   ),
+  get_config_option( 
+                     "sound",
+                     "configurations",
+                     "output:analog-stereo+input:analog-stereo," +
+                     "output:iec958-stereo+input:analog-stereo"
+                   ),
+  get_config_option( 
+                     "sound",
+                     "outputs",
+                     "analog-stereo," +
+                     "iec958-stereo"
+                   ),
+  get_config_option( 
+                     "sound",
+                     "ports",
+                     "analog-output-speaker," +
+                     "iec958-stereo-output"
+                   )
 )
 
 # Prepare for brightness and contrast settings
@@ -66,8 +96,16 @@ view = View(
   brightness,
   sound_output,
   contrast,
-  get_config_option( "theme", "themes",        "arc,clam,alt,default,classic" ),
-  get_config_option( "theme", "default_theme", "clam"                         )
+  get_config_option( 
+                     "theme",
+                     "themes",
+                     "arc,clam,alt,default,classic"
+                   ),
+  get_config_option(
+                     "theme",
+                     "default_theme",
+                     "clam"
+                   )
 )
 
 # Start the main event loop

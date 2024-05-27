@@ -60,7 +60,7 @@ class SoundOutput( Setting ):
       pactl_list_sinks = subprocess.check_output( "pactl list sinks", shell=True, text=True ).strip()
       port_regex = re.compile(
         r"Nom\s*:\s*" + re.escape( self.card_outputs[0] ) + 
-        r"." + re.escape( actual_profil ) + 
+        r"." + re.escape( actual_profil )                 + 
         r".*\r?\n(?:\t.*\r?\n)*\tPort actif\s*:\s*(.+)"
       )
       actual_port_match = port_regex.search( pactl_list_sinks )

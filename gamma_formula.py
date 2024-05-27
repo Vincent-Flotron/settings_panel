@@ -1,7 +1,7 @@
 #! bin/python3
 
-# gamma_lin.py
-# ------------
+# gamma_formula.py
+# ----------------
 
 
 def apply(x):

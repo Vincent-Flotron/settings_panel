@@ -40,8 +40,8 @@ class Contrast( Setting, Scale ):
     try:
       # Construct the xrandr command with screen_name
       command = (
-        r"xrandr --verbose | grep -Poz '" +
-        re.escape( self.screen_name )     +
+        r"xrandr --verbose | grep -Poz '"            +
+        re.escape( self.screen_name )                +
         r"(?:.*\r?\n){1,10}.*Gamma: *?(\d+\.?\d*)'"
       )
       # Execute the command and capture the output
@@ -52,7 +52,6 @@ class Contrast( Setting, Scale ):
         timeout = 5
       )
       # Extract the contrast value using regex
-      # contrast_match = re.search( r"Gamma: *?(\d+\.?\d*)", output )
       contrast_match = self.contrast_extr.search( output )
       if contrast_match:
         self.set_normalized_value( float( contrast_match.group(1) ) )

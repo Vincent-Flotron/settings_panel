@@ -8,14 +8,14 @@ class Mesure:
                 val,
                 offset,
                 k,
-                unit   ):
+                unit    ):
     """
     Initializes the Mesure object.
     
-    :param val: Normalized value
-    :param offset: Offset for conversion
-    :param k: Scale factor
-    :param unit: Unit of measurement
+    :param val    : Normalized value
+    :param offset : Offset for conversion
+    :param k      : Scale factor
+    :param unit   : Unit of measurement
     """
     self._val_norm = val
     self._offset   = offset
