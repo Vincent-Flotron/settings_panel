@@ -6,7 +6,6 @@
 import tkinter       as tk
 from tkinter         import ttk
 from ttkthemes       import ThemedTk
-from screen_settings import ScreenSettings
 from widget          import *
 
 class View:
@@ -34,7 +33,6 @@ class View:
       self.brightness,
       WidgetBuilder.type_scale
     )
-    ScreenSettings.set_brightness( self.brightness.get_norm_val() )
 
     # Contrast Control
     contrast_widget     = WidgetBuilder.make( 
@@ -43,7 +41,6 @@ class View:
       self.contrast,
       WidgetBuilder.type_scale
     )
-    ScreenSettings.set_gamma( self.contrast.get_norm_val() )
 
     # Sound Output Control
     sound_output_widget = WidgetBuilder.make( 

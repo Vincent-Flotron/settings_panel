@@ -8,10 +8,11 @@ import re
 from   setting         import Setting
 from   scale           import Scale
 from   screen_settings import ScreenSettings
+from   observer        import Subject
 import gamma_formula   as gf
 
 
-class Contrast( Setting, Scale ):
+class Contrast( Setting, Scale, Subject ):
   def __init__( self,
                 screen_name,
                 min_value          =   0.0,
@@ -20,7 +21,8 @@ class Contrast( Setting, Scale ):
                 limit_max_contrast = 100.0,
                 scaled_min_value   =   0.2,
                 scaled_max_value   =   1.5,
-                default_value      = 100.0 ):
+                default_value      = 100.0, 
+                observer           = None  ):
     super().__init__(
       min_value,
       max_value,
@@ -31,10 +33,12 @@ class Contrast( Setting, Scale ):
       scaled_max_value,
       default_value
     )
+    Subject.__init__(self)
     self.screen_name    = screen_name
-    self.set_value( default_value )
-    
+    # self.set_value( default_value )
     self.contrast_regex = re.compile( r"Gamma: *?(\d+\.?\d*)" )
+    # For preparing cmd line to modify display
+    super().attach(observer)
 
   def get_current_value( self ):
     try:
@@ -53,8 +57,11 @@ class Contrast( Setting, Scale ):
       )
       # Extract the contrast value using regex
       contrast_match = self.contrast_regex.search( output )
+      print(f"++++first contrast: {output}")
       if contrast_match:
+        print(f"++++match: {contrast_match.group(1)}")
         self.set_normalized_value( float( contrast_match.group(1) ) )
+        super().notify( ( "brightness", self.get_norm_val() ) )
         return self.get_val()
       else:
         print( f"Contrast value not found in xrandr output: {output}" )
@@ -71,10 +78,16 @@ class Contrast( Setting, Scale ):
 
   def set_value( self, value ):
     self.set_val( value )
-    ScreenSettings.set_gamma( gf.reverse( self.get_norm_val() ) )
+    Subject.notify(
+      self,
+      (
+        "gamma",
+        gf.reverse( self.get_norm_val() )
+      )
+    )
     try:
       # Construct the xrandr command to set the contrast
-      command = ScreenSettings.get_command()
+      command = Subject.get_command(self)
       print( command )
       # Execute the command
       subprocess.run(

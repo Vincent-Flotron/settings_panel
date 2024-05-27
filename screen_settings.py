@@ -1,43 +1,44 @@
-#! /bin/python3
+from observer import Observer
 
-# screen_settings.py
-# ------------------
+class ScreenSettings( Observer ):
+  def __init__( self ):
+    self._gamma       = None
+    self._brightness  = None
+    self._screen_name = None
 
+  def update(self, subject):
+    attr, value = zip(subject)
+    if  ( attr == "brightness" ):
+      self.set_brightness( value )
+    elif( attr == "gamma" ):
+      self.set_gamma( value )
+    # TODO
 
-class ScreenSettings:
-  _gamma       = None
-  _brightness  = None
-  _screen_name = None
+  def set_gamma( self, value ):
+    self._gamma = value
 
-  @staticmethod
-  def set_gamma( value ):
-    ScreenSettings._gamma       = value
+  def get_gamma( self ):
+    return self._gamma
 
-  @staticmethod
-  def get_gamma():
-    return ScreenSettings._gamma
+  def set_brightness( self, value ):
+    self._brightness = value
 
-  @staticmethod
-  def set_brightness( value ):
-    ScreenSettings._brightness  = value
+  def get_brightness( self ):
+    return self._brightness
 
-  @staticmethod
-  def get_brightness():
-    return ScreenSettings._brightness
+  def set_screen_name( self, value ):
+    self._screen_name = value
 
-  @staticmethod
-  def set_screen_name( value ):
-    ScreenSettings._screen_name = value
+  def get_screen_name( self ):
+    return self._screen_name
 
-  @staticmethod
-  def get_screen_name():
-    return ScreenSettings._screen_name
-
-  @staticmethod
-  def get_command():
-    return f"xrandr --output {ScreenSettings.get_screen_name()} " + \
-           f"--brightness {ScreenSettings.get_brightness()} "     + \
-           f"--gamma {ScreenSettings.get_gamma()}:"               + \
-           f"{ScreenSettings.get_gamma()}:"                       + \
-           f"{ScreenSettings.get_gamma()}"
-          
+  def get_command( self ):
+    if( self.get_brightness() == None ):
+      raise Exception("Error in screen_settings.get_command(): method called before brightness set.")
+    if( self.get_gamma()      == None ):
+      raise Exception("Error in screen_settings.get_command(): method called before Gamma set.")
+    return f"xrandr --output {self.get_screen_name()} " + \
+           f"--brightness {self.get_brightness()} "     + \
+           f"--gamma {self.get_gamma()}:"               + \
+           f"{self.get_gamma()}:"                       + \
+           f"{self.get_gamma()}"

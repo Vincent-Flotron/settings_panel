@@ -19,7 +19,7 @@ with open( 'files_to_concatenate.txt', 'r' ) as file_list:
         write_mode = 'w'
       else:
         write_mode = 'a'
-      with open( 'main.py', write_mode ) as main_file:
+      with open( 'concatenated.py', write_mode ) as main_file:
         # If it's not the first file, write the file separator to the main file
         if not is_first_file:
           main_file.write(

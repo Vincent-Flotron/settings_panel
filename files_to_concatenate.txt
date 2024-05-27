@@ -2,6 +2,7 @@ contrast.py
 sound_output.py
 widget.py
 screen_settings.py
+main.py
 mesure.py
 brightness.py
 view.py

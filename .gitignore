@@ -166,3 +166,5 @@ exampleCards.txt
 examplePort.txt
 old_config.ini
 xrandrVerb.txt
+settings.db
+files_to_concatenate.txt
