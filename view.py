@@ -3,54 +3,68 @@
 # view.py
 # -------
 
-import tkinter as tk
-from tkinter import ttk
-from ttkthemes import ThemedTk
+import tkinter       as tk
+from tkinter         import ttk
+from ttkthemes       import ThemedTk
 from screen_settings import ScreenSettings
-from widget import *
+from widget          import *
 
 class View:
-  def __init__(self, brightness, sound_output, contrast, themes, default_theme):
-    self.root = ThemedTk(theme="arc")  # Change the theme of the GUI
-    self.root.title("Settings Control")
+  def __init__( self,
+                brightness,
+                sound_output,
+                contrast,
+                themes,
+                default_theme ):
+    self.root = ThemedTk( theme="arc" )  # Change the theme of the GUI
+    self.root.title( "Settings Control" )
 
     self.brightness    = brightness
     self.sound_output  = sound_output
     self.contrast      = contrast
     
-    self.themes        = themes.split(',')
+    self.themes        = themes.split( ',' )
     self.add_theme_to_menu()
-    self.root.set_theme(default_theme)
+    self.root.set_theme( default_theme )
 
     # Brightness Control
-    brightness_widget   = WidgetBuilder.make( self.root,
-                                              "Set Brightness:",
-                                              self.brightness,
-                                              WidgetBuilder.type_scale )
-    ScreenSettings.set_brightness(self.brightness.get_norm_val())
+    brightness_widget   = WidgetBuilder.make(
+      self.root,
+      "Set Brightness:",
+      self.brightness,
+      WidgetBuilder.type_scale
+    )
+    ScreenSettings.set_brightness( self.brightness.get_norm_val() )
 
     # Contrast Control
-    contrast_widget     = WidgetBuilder.make( self.root,
-                                              "Set Contrast:",
-                                              self.contrast,
-                                              WidgetBuilder.type_scale )
-    ScreenSettings.set_gamma(self.contrast.get_norm_val())
+    contrast_widget     = WidgetBuilder.make( 
+      self.root,
+      "Set Contrast:",
+      self.contrast,
+      WidgetBuilder.type_scale
+    )
+    ScreenSettings.set_gamma( self.contrast.get_norm_val() )
 
     # Sound Output Control
-    sound_output_widget = WidgetBuilder.make( self.root,
-                                              "Set sound's output:",
-                                              self.sound_output,
-                                              WidgetBuilder.type_radio )
+    sound_output_widget = WidgetBuilder.make( 
+      self.root,
+      "Set sound's output:",
+      self.sound_output,
+      WidgetBuilder.type_radio
+    )
 
-  def add_theme_to_menu(self):
-    menubar    = tk.Menu(self.root)
-    theme_menu = tk.Menu(menubar, tearoff=0)
-    menubar.add_cascade(label="Themes", menu=theme_menu)
+  def add_theme_to_menu( self ):
+    menubar    = tk.Menu( self.root )
+    theme_menu = tk.Menu( menubar, tearoff=0 )
+    menubar.add_cascade( label="Themes", menu=theme_menu )
 
     for theme in self.themes:
-        theme_menu.add_command(label=theme, command=lambda t=theme: self.root.set_theme(t))
+      theme_menu.add_command(
+        label   = theme,
+        command = lambda
+        t       = theme: self.root.set_theme(t)
+      )
+    self.root.config( menu=menubar )
 
-    self.root.config(menu=menubar)
-
-  def run(self):
+  def run( self ):
     self.root.mainloop()
