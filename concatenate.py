@@ -24,8 +24,8 @@ with open( 'files_to_concatenate.txt', 'r' ) as file_list:
         if not is_first_file:
           main_file.write(
             "\n#==================================" + \
-            "=====================================" + \
-            "=======================#\n"              )
+            "====================================#\n"             
+          )
         # For each line in the file to concatenate
         for line in file_to_concat:
           # Write the line to the main file

@@ -1,5 +1,8 @@
 # bin/python3
 
+# puissance.py
+# ------------
+
 import gamma_formula as gf
 
 

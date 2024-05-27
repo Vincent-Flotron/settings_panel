@@ -1,6 +1,9 @@
-reglages.py
+contrast.py
+sound_output.py
+widget.py
+screen_settings.py
 mesure.py
-scale.py
 brightness.py
 view.py
 setting.py
+scale.py

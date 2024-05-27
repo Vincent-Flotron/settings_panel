@@ -28,23 +28,24 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=9
+current_page=16
 FILE_NAME_0=665;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fbrightness.py;0;2
 FILE_NAME_1=236;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fview.py;0;2
 FILE_NAME_2=129;Conf;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconfig.ini;0;2
 FILE_NAME_3=999;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fcontrast.py;0;2
 FILE_NAME_4=549;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscreen_settings.py;0;2
-FILE_NAME_5=357;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
+FILE_NAME_5=19446;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmain.py;0;2
 FILE_NAME_6=632;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsound_output.py;0;2
 FILE_NAME_7=1173;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fscale.py;0;2
 FILE_NAME_8=511;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fsetting.py;0;2
 FILE_NAME_9=1418;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fwidget.py;0;2
-FILE_NAME_10=166;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fpuissance.py;0;2
-FILE_NAME_11=50;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate.py;0;2
-FILE_NAME_12=541;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate_lister.py;0;2
+FILE_NAME_10=29;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fpuissance.py;0;2
+FILE_NAME_11=902;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate.py;0;2
+FILE_NAME_12=709;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fconcatenate_lister.py;0;2
 FILE_NAME_13=41;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fgamma_formula.py;0;2
 FILE_NAME_14=52;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fmesure.py;0;2
 FILE_NAME_15=788;Python;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Fupdate_from_main.py;0;2
+FILE_NAME_16=0;None;0;EUTF-8;0;1;0;%2Fhome%2Ftuxfan%2FDocuments%2Fsettings_panel%2Ffiles_to_concatenate.txt;0;2
 
 [VTE]
 last_dir=/home/tuxfan
