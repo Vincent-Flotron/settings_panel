@@ -21,7 +21,7 @@ class Brightness( Setting, Scale, Subject ):
                 min_scaled_value     =   0.0,
                 max_scaled_value     =   1.0,
                 default_value        = 100.0,
-                observer             = None):
+                screen_settings_obs  = None  ):
     super().__init__(
       min_value,
       max_value,
@@ -37,7 +37,8 @@ class Brightness( Setting, Scale, Subject ):
     # Prepare brightness regex
     self.brightness_regex = re.compile( r"Brightness: *?(\d\.?\d*)" )
     # For preparing cmd line to modify display
-    super().attach(observer)
+    super().attach(screen_settings_obs)
+    self.screen_setttings = screen_settings_obs
 
 
   def get_current_value( self ):
@@ -57,10 +58,9 @@ class Brightness( Setting, Scale, Subject ):
       )
       # Extract the brightness value using regex
       brightness_match = self.brightness_regex.search( output )
-      print(f"++++first brightness: {output}")
       if brightness_match:
         self.set_normalized_value( float( brightness_match.group(1) ) )
-        super().notify( ( "gamma", self.get_norm_val() ) )
+        super().notify( ( "brightness", self.get_norm_val() ) )
         return self.get_val()
       else:
         print( f"Brightness value not found in xrandr output: {output}" )
@@ -77,10 +77,10 @@ class Brightness( Setting, Scale, Subject ):
 
   def set_value( self, value ):
     self.set_val( value )
-    Subject.notify( self, ( "gamma", self.get_norm_val() ) )
+    Subject.notify( self, ( "brightness", self.get_norm_val() ) )
     try:
       # Construct the xrandr command to set the brightness
-      command = Subject.get_command(self)
+      command = self.screen_setttings.get_command()
       print( command )
       # Execute the command
       subprocess.run(

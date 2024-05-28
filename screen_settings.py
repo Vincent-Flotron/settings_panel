@@ -1,4 +1,5 @@
-from observer import Observer
+from   observer      import Observer
+import gamma_formula as gf
 
 class ScreenSettings( Observer ):
   def __init__( self ):
@@ -7,11 +8,11 @@ class ScreenSettings( Observer ):
     self._screen_name = None
 
   def update(self, subject):
-    attr, value = zip(subject)
+    attr, value = subject
     if  ( attr == "brightness" ):
       self.set_brightness( value )
     elif( attr == "gamma" ):
-      self.set_gamma( value )
+      self.set_gamma( gf.reverse( value ) )
     # TODO
 
   def set_gamma( self, value ):
